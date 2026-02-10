@@ -1,0 +1,4 @@
+timestamp,value,physical_score,is_physically_valid,status,reason
+2025-02-01 20:00:00,95.0,1.0,True,Real Event,Physically Validated Event.
+2025-02-04 10:00:00,0.0,1.0,True,Real Event,Physically Validated Event.
+2025-02-06 00:00:00,499.0,0.1,False,Hardware Error,Stability Error: Rate of change exceeds physical diffusion limits.

@@ -1,2 +1,18 @@
-## Cross-NbS analytic utilities
-This folder introduces functionalities that leverage data from multiple NbS projects to support long-term validity and increase value JUSTNature, and other NbS-related, model-based tools. More specifically, it demonstrates how cross-NbS data can be leveraged in the context of economic valuation and impact assessment. For economic valuation, a benchmark database is developed and showcased with functionalities for automated value transfer, allowing new projects to make more accurate assessments about their economic potential in absence of detailed local data. For impact assessment, a pipeline for causal analysis is demonstrated, which encompasses case specification, setting up conditions for causal analysis, processing data, and making causal inferences, which allows, on the strategic level, moving beyond before-after assessments of projects, and leveraging monitoring data to identify specific, additional impacts of NbS interventions. 
+# JUSTNature SME Tool
+**Similarity & Matchmaking Engine for CiPeLs**
+
+The SME tool identifies "Scientific Peers" among city practice labs by analyzing multi-dimensional contextual data (environmental, governance, and NbS profiles).
+
+## Documentation
+*   [**Methodology**](docs/methodology.md): The scientific basis, vectorization logic, and mathematical formulas (Cosine Similarity, Z-scores).
+*   [**User Guide**](docs/user_guide.md): Instructions for generating sample data, running the engine, and interpreting the visualization.
+
+## Quick Start
+```bash
+# 1. Generate Metadata
+python sample_gen.py
+
+# 2. Run Matchmaker
+python run_matchmaking.py
+```
+**Output**: Heatmaps and similarity matrices in `data/output` and `docs`.
