@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiD Process Flowchart - Horizontal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            margin: 0;
+            overflow-x: auto;
+        }
+
+        .flow-container {
+            width: fit-content;
+            /* Adjust width as needed or let it grow */
+            min-width: 85%;
+            padding: 2rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .step-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            /* Horizontal layout */
+            gap: 2rem;
+            /* Space between steps */
+            padding-top: 2rem;
+            /* Space for dots */
+            margin-top: 1rem;
+        }
+
+        /* Horizontal Line */
+        .step-wrapper::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 41px;
+            /* Align with center of dots (21px + padding-top) */
+            right: 0;
+            height: 2px;
+            background: #e2e8f0;
+            z-index: 0;
+        }
+
+        .step-item {
+            display: flex;
+            flex-direction: column;
+            /* Stack dot above content */
+            align-items: center;
+            /* Center align items */
+            position: relative;
+            z-index: 1;
+            width: 180px;
+            /* Fixed width for steps */
+            text-align: center;
+        }
+
+        .step-dot {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #4831D4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #4831D4;
+            flex-shrink: 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1rem;
+            /* Space below dot */
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-dot-start {
+            background: #4831D4;
+            color: white;
+            z-index: 2;
+        }
+
+        .step-dot-end {
+            border-color: #CCF381;
+            color: #CCF381;
+            z-index: 2;
+        }
+
+        .step-content {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e2e8f0;
+            width: 100%;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+        }
+
+        .step-content:hover {
+            border-color: #4831D4;
+            background: #eff6ff;
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .step-desc {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        /* Adjust specific styling for end step content border */
+        .step-content.final-step {
+            border-top: 4px solid #CCF381;
+            border-left: 1px solid #e2e8f0;
+            /* Reset left border */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="flow-container">
+        <div class="header">
+            <h1 class="text-xl font-bold text-slate-800">5.2 DiD Analytic Pipeline</h1>
+            <p class="text-slate-500 text-xs mt-1 uppercase tracking-wider">WP3 Methodological Framework</p>
+        </div>
+
+        <div class="step-wrapper">
+            <!-- Step 1 -->
+            <div class="step-item">
+                <div class="step-dot step-dot-start">1</div>
+                <div class="step-content">
+                    <div class="step-title">Raw Data <br> Acquisition</div>
+                    <div class="step-desc">Loading Excel/CSV survey inputs.</div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step-item">
+                <div class="step-dot">2</div>
+                <div class="step-content">
+                    <div class="step-title">Cleaning & <br> Normalization</div>
+                    <div class="step-desc">Handling Likert scales and missing data.</div>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step-item">
+                <div class="step-dot">3</div>
+                <div class="step-content">
+                    <div class="step-title">Fuzzy Keyword <br> Mapping</div>
+                    <div class="step-desc">Matching survey columns to pillars.</div>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step-item">
+                <div class="step-dot">4</div>
+                <div class="step-content">
+                    <div class="step-title">Index <br> Aggregation</div>
+                    <div class="step-desc">Creating composite scores for indicators.</div>
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="step-item">
+                <div class="step-dot">5</div>
+                <div class="step-content">
+                    <div class="step-title">OLS <br> Regression</div>
+                    <div class="step-desc">Executing DiD with control variables.</div>
+                </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="step-item">
+                <div class="step-dot">6</div>
+                <div class="step-content">
+                    <div class="step-title">Inference <br> Analysis</div>
+                    <div class="step-desc">Testing P-values and Parallel Trends.</div>
+                </div>
+            </div>
+
+            <!-- Step 7 -->
+            <div class="step-item">
+                <div class="step-dot step-dot-end">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+                <!-- Changed inline style to class for better separation -->
+                <div class="step-content final-step">
+                    <div class="step-title">Final Impact <br> Report</div>
+                    <div class="step-desc">Generating automated results summary.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-12 text-center text-slate-400 text-[10px] uppercase tracking-widest">
+            JUSTNature Szombathely Pilot
+        </div>
+    </div>
+
+</body>
+
+</html>

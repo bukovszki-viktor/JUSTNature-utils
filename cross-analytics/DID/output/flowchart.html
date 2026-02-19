@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiD Process Flowchart - Vertical</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            padding: 2rem;
+            margin: 0;
+        }
+
+        .flow-container {
+            width: 100%;
+            max-width: 500px;
+            padding: 2rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+        }
+
+        .step-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* Vertical Line */
+        .step-wrapper::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e2e8f0;
+            z-index: 0;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-dot {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #3b82f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #3b82f6;
+            flex-shrink: 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .step-dot-start {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .step-dot-end {
+            border-color: #22c55e;
+            color: #22c55e;
+        }
+
+        .step-content {
+            background: #f8fafc;
+            padding: 1rem 1.25rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e2e8f0;
+            flex-grow: 1;
+            transition: all 0.2s ease;
+        }
+
+        .step-content:hover {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 0.95rem;
+        }
+
+        .step-desc {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-top: 0.25rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="flow-container">
+        <div class="header">
+            <h1 class="text-xl font-bold text-slate-800">5.2 DiD Analytic Pipeline</h1>
+            <p class="text-slate-500 text-xs mt-1 uppercase tracking-wider">WP3 Methodological Framework</p>
+        </div>
+
+        <div class="step-wrapper">
+            <!-- Step 1 -->
+            <div class="step-item">
+                <div class="step-dot step-dot-start">1</div>
+                <div class="step-content">
+                    <div class="step-title">Raw Data Acquisition</div>
+                    <div class="step-desc">Loading Excel/CSV survey inputs.</div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step-item">
+                <div class="step-dot">2</div>
+                <div class="step-content">
+                    <div class="step-title">Cleaning & Normalization</div>
+                    <div class="step-desc">Handling Likert scales and missing data.</div>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step-item">
+                <div class="step-dot">3</div>
+                <div class="step-content">
+                    <div class="step-title">Fuzzy Keyword Mapping</div>
+                    <div class="step-desc">Matching survey columns to pillars.</div>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step-item">
+                <div class="step-dot">4</div>
+                <div class="step-content">
+                    <div class="step-title">Index Aggregation</div>
+                    <div class="step-desc">Creating composite scores for indicators.</div>
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="step-item">
+                <div class="step-dot">5</div>
+                <div class="step-content">
+                    <div class="step-title">OLS Regression</div>
+                    <div class="step-desc">Executing DiD with control variables.</div>
+                </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="step-item">
+                <div class="step-dot">6</div>
+                <div class="step-content">
+                    <div class="step-title">Inference Analysis</div>
+                    <div class="step-desc">Testing P-values and Parallel Trends.</div>
+                </div>
+            </div>
+
+            <!-- Step 7 -->
+            <div class="step-item">
+                <div class="step-dot step-dot-end">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+                <div class="step-content" style="border-left: 4px solid #22c55e;">
+                    <div class="step-title">Final Impact Report</div>
+                    <div class="step-desc">Generating automated results summary.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 text-center text-slate-400 text-[10px] uppercase tracking-widest">
+            JUSTNature Szombathely Pilot
+        </div>
+    </div>
+
+</body>
+
+</html>

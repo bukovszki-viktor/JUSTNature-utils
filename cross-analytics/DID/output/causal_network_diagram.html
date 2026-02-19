@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiD Causal Network Diagram</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            padding: 3rem 1rem;
+            margin: 0;
+        }
+
+        .diagram-container {
+            width: 100%;
+            max-width: 650px;
+            padding: 2.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 1rem;
+            background: #ffffff;
+            position: relative;
+        }
+
+        .node {
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            border: 2px solid #e2e8f0;
+            background: #f8fafc;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1e293b;
+            text-align: center;
+            width: 200px;
+            height: 64px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .node-outcome {
+            border-color: #CCF381;
+            background: #f9ffeb;
+            color: #3b4d1a;
+            width: 180px;
+        }
+
+        .node-unobserved {
+            border-style: dashed;
+            background: #fff;
+            color: #64748b;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        /* FIXED: SVG Overlay now starts at top 0 of the grid */
+        .svg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 200px 80px 180px;
+            grid-template-rows: 64px 40px 64px 60px 64px;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="diagram-container">
+        <div class="text-center mb-10">
+            <h1 class="text-xl font-bold text-slate-800">2.2 DiD Causal Network</h1>
+            <p class="text-slate-500 text-xs mt-1 uppercase tracking-wider">Theoretical Framework for ATT Estimation</p>
+        </div>
+
+        <!-- Grid used to position the nodes -->
+        <div class="layout-grid">
+
+            <!-- Row 1: Group Assignment -->
+            <div class="node">
+                <div>Group Assignment</div>
+                <div class="text-[10px] font-normal opacity-70">(Treatment / Control)</div>
+            </div>
+            <div></div>
+            <div></div>
+
+            <!-- Row 2: Spacer (40px) -->
+            <div class="h-10"></div>
+            <div class="h-10"></div>
+            <div class="h-10"></div>
+
+            <!-- Row 3: Temporal Period & Outcome -->
+            <div class="node">
+                <div>Temporal Period</div>
+                <div class="text-[10px] font-normal opacity-70">(Pre / Post)</div>
+            </div>
+
+            <div class="flex justify-center items-center"></div>
+
+            <div class="node node-outcome">
+                <div>Outcome: Y</div>
+                <div class="text-[10px] font-normal opacity-70">(WP3 Indicator)</div>
+            </div>
+
+            <!-- Row 4: Spacer (60px) -->
+            <div class="h-[60px]"></div>
+            <div class="h-[60px]"></div>
+            <div class="h-[60px]"></div>
+
+            <!-- Row 5: Unobserved Factors -->
+            <div></div>
+            <div></div>
+            <div class="node node-unobserved">
+                <div>Unobserved</div>
+                <div class="text-[10px] font-normal opacity-70">Time-Invariant Factors</div>
+            </div>
+
+            <!-- Corrected SVG Connectors -->
+            <!-- Logic: 
+             Row 1 center: 32px
+             Row 3 center: 64 (Row 1) + 40 (Row 2) + 32 = 136px
+             Col 1 width: 200px
+             Junction X: 240px (Middle of the 80px gap)
+             Outcome box starts at 280px
+             Unobserved center X: 280 + 90 = 370px
+        -->
+            <svg class="svg-overlay" viewBox="0 0 460 300">
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="#cbd5e1" />
+                    </marker>
+                    <marker id="arrowhead-highlight" markerWidth="10" markerHeight="7" refX="9" refY="3.5"
+                        orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="#CCF381" />
+                    </marker>
+                </defs>
+
+                <!-- Line from Group Assignment (Top) down to junction -->
+                <path d="M 200 32 L 240 32 L 240 136" stroke="#cbd5e1" stroke-width="2" fill="none" />
+
+                <!-- Line from Temporal Period (Middle) to junction -->
+                <path d="M 200 136 L 240 136" stroke="#cbd5e1" stroke-width="2" fill="none" />
+
+                <!-- From Junction to Outcome Y -->
+                <path d="M 240 136 L 275 136" stroke="#CCF381" stroke-width="2" fill="none"
+                    marker-end="url(#arrowhead-highlight)" />
+
+                <!-- Unobserved Factors (Bottom) pointing up to Outcome -->
+                <!-- Start at Y=228 (Top of Row 5) up to Y=168 (Bottom of Row 3) -->
+                <path d="M 370 228 L 370 173" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="5,3" fill="none"
+                    marker-end="url(#arrowhead)" />
+            </svg>
+        </div>
+
+        <div class="mt-12 text-center text-slate-400 text-[10px] uppercase tracking-widest border-t pt-4">
+            JUSTNature Causal Inference Model • Szombathely Pilot
+        </div>
+    </div>
+
+</body>
+
+</html>
